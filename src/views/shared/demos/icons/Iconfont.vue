@@ -29,8 +29,8 @@
 <script lang="ts">
 import {defineComponent, reactive, toRefs} from 'vue'
 import {Alert,} from 'ant-design-vue'
-import {IconFont} from '@/components/iconfont'
-import PreviewModal from '@/components/preview-modal.vue'
+import {IconFont} from '/@/components/iconfont'
+import PreviewModal from '/@/components/preview-modal.vue'
 
 /**
  * @description ant-design-vue配置阿里巴巴矢量图标库使用

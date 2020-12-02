@@ -1,11 +1,11 @@
 import {RouteRecordRaw} from 'vue-router'
-import {RouterTransition} from '@/components/transition'
-import {markRaw} from "vue";
+import {RouterTransition} from '/@/components/transition'
+import {createVNode} from "vue";
 
 const routes: Array<RouteRecordRaw> = [{
     path: '/redirect/:path*',
     name: 'Redirect',
-    component: markRaw(RouterTransition),
+    component: createVNode(RouterTransition),
     meta: {
         title: '重定向',
         icon: 'SettingOutlined',
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [{
         {
             path: '',
             name: 'Redirect',
-            component: require('@/views/shared/redirect/index.vue').default,
+            component: import('/@/views/shared/redirect/index.vue'),
             meta: {
                 title: '重定向',
                 hidden: true,

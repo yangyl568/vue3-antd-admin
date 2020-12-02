@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="box">
-      <img src="~@/assets/analysis.svg">
+      <img src="../../../../assets/analysis.svg">
       <a-descriptions title="系统信息" bordered>
         <a-descriptions-item label="IP" key="IP">
           {{ userInfo.IP }}
@@ -21,12 +21,12 @@
 import {defineComponent, ref, watchEffect} from 'vue'
 import {Descriptions, Badge} from 'ant-design-vue'
 import {SettingOutlined, EditOutlined, EllipsisOutlined} from '@ant-design/icons-vue';
-import HuaweiCharge from '@/components/lockscreen/huawei-charge.vue'
-import BrowserType from '@/utils/browser-type'
-import {useBattery} from "@/hooks/useBattery";
-import {useOnline} from '@/hooks/useOnline'
+import HuaweiCharge from '/@/components/lockscreen/huawei-charge.vue'
+import BrowserType from '/@/utils/browser-type'
+import {useBattery} from "/@/hooks/useBattery";
+import {useOnline} from '/@/hooks/useOnline'
 import {useStore} from 'vuex'
-// import performanceMonitor from '@/utils/performanceMonitor'
+// import performanceMonitor from '/@/utils/performanceMonitor'
 
 export default defineComponent({
   name: 'welcome',

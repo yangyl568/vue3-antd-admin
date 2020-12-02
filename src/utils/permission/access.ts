@@ -1,5 +1,5 @@
 import {App} from 'vue'
-import store from '@/store'
+import store from '/@/store'
 
 /**
  * 第二种权限验证形式

@@ -1,6 +1,6 @@
 import {RouteRecordRaw} from 'vue-router'
-import {RouterTransition} from '@/components/transition'
-import {markRaw} from "vue";
+import {RouterTransition} from '/@/components/transition'
+import {createVNode, defineAsyncComponent} from "vue";
 
 const routeName = 'error'
 
@@ -8,14 +8,14 @@ export const notFound = {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     redirect: '/error/404',
-    component: () => import(/* webpackChunkName: "404" */ '@/views/shared/error/404.vue')
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "404" */ '/@/views/shared/error/404.vue'))
 }
 
 export const errorRoutes = {
     path: '/error',
     name: routeName,
     redirect: '/error/404',
-    component: markRaw(RouterTransition),
+    component: createVNode(RouterTransition),
     meta: {
         title: '错误页',
         icon: 'EditOutlined',
@@ -29,7 +29,7 @@ export const errorRoutes = {
                 title: '404',
                 icon: 'UserOutlined'
             },
-            component: () => import(/* webpackChunkName: "404" */ '@/views/shared/error/404.vue')
+            component: defineAsyncComponent(() => import(/* webpackChunkName: "404" */ '/@/views/shared/error/404.vue'))
         }
     ]
 }

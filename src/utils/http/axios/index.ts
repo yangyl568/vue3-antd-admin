@@ -7,16 +7,16 @@ import qs from 'qs'
 import {checkStatus} from './checkStatus';
 import {Modal, message as Message} from "ant-design-vue";
 
-import {RequestEnum, ResultEnum, ContentTypeEnum} from '@/enums/httpEnum';
+import {RequestEnum, ResultEnum, ContentTypeEnum} from '/@/enums/httpEnum';
 
-import {isString} from '@/utils/is/index';
-import {setObjToUrlParams} from '@/utils/urlUtils'
+import {isString} from '/@/utils/is/index';
+import {setObjToUrlParams} from '/@/utils/urlUtils'
 
 import {RequestOptions, Result} from './types';
 
 const isDev = process.env.NODE_ENV === 'development'
-import router from '@/router'
-import store from '@/store'
+import router from '/@/router'
+import store from '/@/store'
 
 /**
  * @description: 数据处理，方便区分多种处理方式

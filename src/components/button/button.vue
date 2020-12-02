@@ -36,9 +36,9 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "./styles/success";
+@import "./styles/success.less";
 </style>
 
 <style lang="less" scoped>
-@import "./styles/warning";
+@import "./styles/warning.less";
 </style>

@@ -20,9 +20,9 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {Card, message} from 'ant-design-vue'
-import {IconFont} from '@/components/iconfont'
+import {IconFont} from '/@/components/iconfont'
 import icons from "./icons";
-import {copyText} from '@/utils/common'
+import {copyText} from '/@/utils/common'
 
 const prefix = process.env.BASE_URL
 

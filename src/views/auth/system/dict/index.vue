@@ -14,12 +14,12 @@
 import {defineComponent, reactive, toRefs, createVNode, computed, ref} from 'vue'
 import {Modal} from 'ant-design-vue'
 import {QuestionCircleOutlined} from '@ant-design/icons-vue'
-import {DynamicTable} from '@/components/dynamic-table'
-import {useCreateModal} from "@/hooks";
-import {delAdminDictConfig, getAdminDictConfig} from '@/api/system/dict'
+import {DynamicTable} from '/@/components/dynamic-table'
+import {useCreateModal} from "/@/hooks";
+import {delAdminDictConfig, getAdminDictConfig} from '/@/api/system/dict'
 import AddModal from './add-modal.vue'
 import {columns} from "./columns";
-import {hasPermission} from "@/utils/permission/hasPermission";
+import {hasPermission} from "/@/utils/permission/hasPermission";
 
 export default defineComponent({
   name: 'system-dict',

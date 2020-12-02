@@ -1,5 +1,5 @@
 import {ObjectDirective } from 'vue'
-import {hasPermission} from '@/utils/permission/hasPermission'
+import {hasPermission} from '/@/utils/permission/hasPermission'
 
 export const permission: ObjectDirective  = {
     mounted(el: HTMLButtonElement, binding, vnode) {

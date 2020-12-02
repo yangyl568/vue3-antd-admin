@@ -85,10 +85,10 @@
 <script lang="ts">
 import {defineComponent, reactive, nextTick, toRefs, unref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
-import components from "@/layout/tabs/components";
-import {RouterTransition} from '@/components/transition'
-import {createStorage} from '@/utils/Storage'
-import {TABS_ROUTES} from '@/store/mutation-types'
+import components from "/@/layout/tabs/components";
+import {RouterTransition} from '/@/components/transition'
+import {createStorage} from '/@/utils/Storage'
+import {TABS_ROUTES} from '/@/store/mutation-types'
 
 import {message} from 'ant-design-vue'
 

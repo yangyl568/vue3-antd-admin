@@ -14,7 +14,7 @@
 <script lang="ts">
 import {defineComponent, PropType, computed} from 'vue'
 import {Checkbox, Row, Col} from 'ant-design-vue'
-import {FormItem} from "@/types/schema";
+import {FormItem} from "/@/types/schema";
 
 export default defineComponent({
   name: 'schema-form-checkbox',

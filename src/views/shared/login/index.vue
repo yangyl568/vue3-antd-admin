@@ -2,7 +2,7 @@
   <div class="login-box">
     <div class="login-logo">
       <svg-icon icon-class="logo" />
-<!--      <img src="~@/assets/images/logo.png" alt="">-->
+<!--      <img src="~/@/assets/images/logo.png" alt="">-->
       <h1>Antd Admin</h1>
     </div>
     <a-form layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.prevent>
@@ -36,13 +36,13 @@ import {defineComponent, reactive, toRefs, onMounted} from 'vue'
 import {message} from 'ant-design-vue'
 import {UserOutlined, LockOutlined} from '@ant-design/icons-vue'
 import md5 from 'blueimp-md5'
-// ~@/assets/logo.png
+// ~/@/assets/logo.png
 import {useRoute, useRouter} from "vue-router";
 import {useStore} from 'vuex'
 
-import {login} from "@/api/system/user";
+import {login} from "/@/api/system/user";
 
-import {SvgIcon} from '@/components/svg-icon'
+import {SvgIcon} from '/@/components/svg-icon'
 
 export default defineComponent({
   name: "login",
@@ -103,7 +103,7 @@ export default defineComponent({
   padding-top: 240px;
   flex-direction: column;
   align-items: center;
-  background: url("~@/assets/login.svg");
+  background: url("~/@/assets/login.svg");
   background-size: 100%;
 
   .login-logo {

@@ -1,12 +1,12 @@
 import {isNavigationFailure} from 'vue-router'
 import router, {routes} from './index'
-import store from '@/store'
+import store from '/@/store'
 import NProgress from 'nprogress' // progress bar
-import {ACCESS_TOKEN} from '@/store/mutation-types'
-import {createStorage} from '@/utils/Storage'
+import {ACCESS_TOKEN} from '/@/store/mutation-types'
+import {createStorage} from '/@/utils/Storage'
 
 const Storage = createStorage()
-import {debounce} from '@/utils/lodashChunk'
+import {debounce} from '/@/utils/lodashChunk'
 
 NProgress.configure({showSpinner: false}) // NProgress Configuration
 

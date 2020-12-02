@@ -99,7 +99,7 @@
 <script lang="ts">
 import {defineComponent, reactive, PropType, toRefs} from 'vue'
 import {Card, Select, Table, Popconfirm, message} from 'ant-design-vue'
-import {usePages} from "@/hooks";
+import {usePages} from "/@/hooks";
 import useDragCol from './utils/useDragCol'
 
 interface Columns{

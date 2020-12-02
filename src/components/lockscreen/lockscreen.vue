@@ -73,13 +73,13 @@ import {
 } from '@ant-design/icons-vue'
 
 import {useRouter, useRoute} from "vue-router";
-import {useOnline} from '@/hooks/useOnline'
-import {useTime} from '@/hooks/useTime'
-import {login} from "@/api/system/user";
+import {useOnline} from '/@/hooks/useOnline'
+import {useTime} from '/@/hooks/useTime'
+import {login} from "/@/api/system/user";
 // import md5 from 'blueimp-md5'
 import HuaweiCharge from './huawei-charge.vue'
 import XiaomiCharge from './xiaomi-charge.vue'
-import {useBattery} from '@/hooks/useBattery'
+import {useBattery} from '/@/hooks/useBattery'
 import {useStore} from "vuex";
 
 export default defineComponent({

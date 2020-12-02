@@ -14,9 +14,9 @@
 import {defineComponent, reactive, toRefs, createVNode, computed, ref} from 'vue'
 import {Modal} from 'ant-design-vue'
 import {QuestionCircleOutlined} from '@ant-design/icons-vue'
-import {DynamicTable} from '@/components/dynamic-table'
-import {useCreateModal} from "@/hooks";
-import {delAdminAccount, getAdminAccount} from '@/api/system/account'
+import {DynamicTable} from '/@/components/dynamic-table'
+import {useCreateModal} from "/@/hooks";
+import {delAdminAccount, getAdminAccount} from '/@/api/system/account'
 import AddModal from './add-modal.vue'
 import {columns} from "./columns";
 

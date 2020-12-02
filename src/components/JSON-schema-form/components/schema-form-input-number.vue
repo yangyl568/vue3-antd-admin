@@ -8,7 +8,7 @@
 <script lang="ts">
 import {defineComponent, PropType, computed} from 'vue'
 import {InputNumber} from 'ant-design-vue'
-import {FormItem} from "@/types/schema";
+import {FormItem} from "/@/types/schema";
 
 export default defineComponent({
   name: 'schema-form-input-number',

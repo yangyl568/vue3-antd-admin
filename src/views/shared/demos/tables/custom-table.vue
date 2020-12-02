@@ -2,7 +2,7 @@
   <div>
     <a-alert
         message="封装ant-design-vue的表格"
-        description="继承自原ant-design-vue的a-button，轻易扩展按钮的type定制不同颜色，详细看@/components/button/button.vue"
+        description="继承自原ant-design-vue的a-button，轻易扩展按钮的type定制不同颜色，详细看/@/components/button/button.vue"
         type="info"
         show-icon
     />
@@ -24,7 +24,7 @@
 <script lang="ts">
 import {defineComponent, reactive, toRefs} from 'vue'
 import {Alert,Card} from 'ant-design-vue'
-import {AButton} from '@/components/button'
+import {AButton} from '/@/components/button'
 
 /**
  * @description 扩展ant-design-vue表格功能

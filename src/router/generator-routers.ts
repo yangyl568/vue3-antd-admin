@@ -1,11 +1,12 @@
-import {adminMenus} from '@/api/system/menu'
+import {adminMenus} from '/@/api/system/menu'
 import {constantRouterComponents} from './constantRouterComponents'
-import router from "@/router/index";
-import {routes} from "@/router/index";
-import {notFound} from '@/router/modules/error'
+import router from "/@/router/index";
+import {routes} from "/@/router/index";
+import {notFound} from '/@/router/modules/error'
 import {Empty} from 'ant-design-vue'
-import common from "@/router/common";
-import store from "@/store";
+import common from "/@/router/common";
+import store from "/@/store";
+import {defineAsyncComponent} from "vue";
 
 /**
  * 数组转树形结构
@@ -52,7 +53,7 @@ export const generator = (routerMap, parent?: any) => {
             // 该路由对应页面的 组件 :方案1
             // component: constantRouterComponents[item.component || item.key],
             // 该路由对应页面的 组件 :方案2 (动态加载)
-            component: (constantRouterComponents[item.url]) || (() => import('@/views/shared/error/404.vue')),
+            component: (constantRouterComponents[item.url]) || defineAsyncComponent(() => import('/@/views/shared/error/404.vue')),
             props: true,
             // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
             meta: {
@@ -103,7 +104,7 @@ const list2tree = (items, parentId = -1, arr = []) => {
             name: path || '',
             children: list2tree(items, item.id, []),
             // 该路由对应页面的 组件 (动态加载)
-            component: (constantRouterComponents[path]) || Empty || (() => import('@/views/shared/error/404.vue')),
+            component: (constantRouterComponents[path]) || Empty || defineAsyncComponent(() => import('/@/views/shared/error/404.vue')),
             props: true,
             // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
             meta: {

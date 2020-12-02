@@ -14,9 +14,9 @@
 import {defineComponent, reactive, toRefs, ref, onMounted} from 'vue'
 import {Modal} from 'ant-design-vue'
 import {addSchema} from "./add-schema"
-import {useAsync} from "@/hooks";
-import {SchemaForm} from '@/components/JSON-schema-form'
-import {patchAdminDictConfig} from "@/api/system/dict";
+import {useAsync} from "/@/hooks";
+import {SchemaForm} from '/@/components/JSON-schema-form'
+import {patchAdminDictConfig} from "/@/api/system/dict";
 
 export default defineComponent({
   name: "edit-modal",

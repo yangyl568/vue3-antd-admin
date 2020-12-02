@@ -13,7 +13,7 @@
 import {defineComponent, computed, ref, onMounted, onUnmounted} from 'vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import {ConfigProvider} from 'ant-design-vue'
-import {LockScreen} from '@/components/lockscreen'
+import {LockScreen} from '/@/components/lockscreen'
 import {useStore} from 'vuex'
 import {useRoute} from "vue-router";
 
@@ -65,9 +65,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "~@/styles/global.scss";
-@import "~@/styles/common.scss";
-@import "~@/styles/override.scss";
+@import "./styles/global.scss";
+@import "./styles/common.scss";
+@import "./styles/override.scss";
 
 .slide-up-enter-active,
 .slide-up-leave-active {

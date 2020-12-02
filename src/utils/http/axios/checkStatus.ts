@@ -1,6 +1,6 @@
 import {message as Message} from "ant-design-vue";
-import router from '@/router'
-import {createStorage} from '@/utils/Storage'
+import router from '/@/router'
+import {createStorage} from '/@/utils/Storage'
 
 const storage = createStorage()
 

@@ -1,5 +1,5 @@
 import {Module} from 'vuex'
-import {adminMenus} from '@/api/system/menu'
+import {adminMenus} from '/@/api/system/menu'
 
 const state = {
     authMenuList: [] // 授权的菜单列表

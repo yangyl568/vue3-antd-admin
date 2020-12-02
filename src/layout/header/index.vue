@@ -55,11 +55,11 @@
 <script lang="ts">
 import {defineComponent, reactive, toRefs, createVNode} from 'vue'
 import {useRouter, useRoute} from 'vue-router'
-import components from "@/layout/header/components";
+import components from "/@/layout/header/components";
 import {message, Modal} from 'ant-design-vue'
 import {QuestionCircleOutlined} from '@ant-design/icons-vue'
 import {useStore} from 'vuex'
-import {TABS_ROUTES} from "@/store/mutation-types";
+import {TABS_ROUTES} from "/@/store/mutation-types";
 
 export default defineComponent({
   name: "PageHeader",

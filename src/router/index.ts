@@ -6,14 +6,14 @@ import 'nprogress/nprogress.css' // 进度条样式
 
 import shared from './modules/shared'
 import {errorRoutes, notFound} from './modules/error'
-import common from "@/router/common";
+import common from "/@/router/common";
 
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Layout',
         redirect: '/dashboard',
-        component: () => import(/* webpackChunkName: "layout" */ '@/layout/index.vue'),
+        component: import(/* webpackChunkName: "layout" */ '/@/layout/index.vue'),
         meta: {
             title: '首页'
         },

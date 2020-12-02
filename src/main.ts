@@ -2,16 +2,16 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/'
-import store from '@/store'
-// import {SvgIcon} from '@/components/svg-icon'
-import {AButton} from '@/components/button/'
+import store from '/@/store'
+// import {SvgIcon} from '/@/components/svg-icon'
+import {AButton} from '/@/components/button/'
 
 import {Modal, Table, Menu, Input, Form,Card, Checkbox, Radio} from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css'
 // 路由守卫
-import '@/router/router-guards'
-import {permission} from "@/directives/permission";
-import hasPermission from "@/utils/permission/hasPermission";
+import '/@/router/router-guards'
+import {permission} from "/@/directives/permission";
+import hasPermission from "/@/utils/permission/hasPermission";
 const app = createApp(App)
 
 // app.config.globalProperties.$message = message

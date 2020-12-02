@@ -23,9 +23,9 @@
 import {defineComponent, reactive, getCurrentInstance, isReactive, isRef, markRaw, watch} from 'vue'
 import {Form, Spin} from 'ant-design-vue'
 import {useForm} from "@ant-design-vue/use";
-import {isString, isFunction} from '@/utils/is'
+import {isString, isFunction} from '/@/utils/is'
 import components from './components'
-import {FormItem} from "@/types/schema";
+import {FormItem} from "/@/types/schema";
 
 export default defineComponent({
   name: "dynamic-form",

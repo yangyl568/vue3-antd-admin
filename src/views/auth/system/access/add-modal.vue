@@ -47,8 +47,8 @@
 <script lang="ts">
 import {defineComponent, reactive, toRefs, onMounted, toRaw, ref} from 'vue'
 import {Modal, Form, InputNumber, Input, Select} from 'ant-design-vue'
-import {useAsync} from "@/hooks";
-import {postAdminAccess, getAdminAccessModule, patchAdminAccess} from "@/api/system/access";
+import {useAsync} from "/@/hooks";
+import {postAdminAccess, getAdminAccessModule, patchAdminAccess} from "/@/api/system/access";
 const prefix = process.env.BASE_URL
 
 export default defineComponent({

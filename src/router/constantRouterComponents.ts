@@ -1,11 +1,20 @@
 import {RouterView} from 'vue-router'
-import {markRaw} from "vue";
-import {RouterTransition} from "@/components/transition";
+import {createVNode, defineAsyncComponent} from "vue";
+import {RouterTransition} from "/@/components/transition";
+import {Spin} from 'ant-design-vue'
+
+// 异步加载组件
+const asyncComponent = (path) => new Promise((resolve) => resolve(defineAsyncComponent({
+    loader: () => import(path),
+    loadingComponent: Spin,
+})))
 
 export const constantRouterComponents = {
-    '/system': markRaw(RouterTransition), // 系统管理
-    '/system/access': () => import(/* webpackChunkName: "system-access" */ '@/views/auth/system/access/index.vue'), // 资源管理
-    '/system/account': () => import(/* webpackChunkName: "system-account" */ '@/views/auth/system/account/index.vue'), // 账号管理
-    '/system/dict': () => import(/* webpackChunkName: "system-dict" */ '@/views/auth/system/dict/index.vue'), // 字典管理
-    '/system/role': () => import(/* webpackChunkName: "system-role" */ '@/views/auth/system/role/index.vue'), // 角色管理
+    '/system': createVNode(RouterTransition), // 系统管理
+    '/system/access': asyncComponent("/@/views/auth/system/access/index.vue"), // 资源管理
+    // '/system/access': defineAsyncComponent(() => import('/@/views/auth/system/access/index.vue')), // 资源管理
+    '/system/account': asyncComponent('/@/views/auth/system/account/index.vue'), // 账号管理
+    '/system/dict': asyncComponent('/@/views/auth/system/dict/index.vue'), // 字典管理
+    '/system/role': asyncComponent('/@/views/auth/system/role/index.vue'), // 角色管理
+    // '/system/role': asyncComponent('/@/views/auth/system/role/index.vue'), // 角色管理
 }

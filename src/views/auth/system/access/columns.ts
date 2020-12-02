@@ -1,10 +1,10 @@
-import {useCreateModal} from "@/hooks";
+import {useCreateModal} from "/@/hooks";
 import AddModal from './add-modal.vue'
-import {delAdminAccess} from "@/api/system/access";
-import {formatDate} from '@/utils/common'
-import {TableColumn} from "@/types/tableColumn";
+import {delAdminAccess} from "/@/api/system/access";
+import {formatDate} from '/@/utils/common'
+import {TableColumn} from "/@/types/tableColumn";
 import {message} from "ant-design-vue";
-import {IconFont} from '@/components/iconfont'
+import {IconFont} from '/@/components/iconfont'
 import {createVNode} from 'vue'
 
 export const columns: TableColumn[] = [ // 资源管理

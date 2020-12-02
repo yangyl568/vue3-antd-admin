@@ -16,7 +16,7 @@
 <script lang="ts">
 import {defineComponent, reactive, toRefs, computed, onMounted} from 'vue'
 import {Tree, Spin} from 'ant-design-vue'
-import {getAdminRoleAccess} from '@/api/system/role'
+import {getAdminRoleAccess} from '/@/api/system/role'
 
 export default defineComponent({
   name: "access-tree",

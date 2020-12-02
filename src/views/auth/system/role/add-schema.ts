@@ -1,7 +1,7 @@
 import {createVNode} from 'vue'
 import AccessTree from './components/access-tree.vue'
-import {FormSchema} from "@/types/schema";
-import {getAdminRoleAccess} from "@/api/system/role";
+import {FormSchema} from "/@/types/schema";
+import {getAdminRoleAccess} from "/@/api/system/role";
 
 export const addSchema: FormSchema = {
     style: {

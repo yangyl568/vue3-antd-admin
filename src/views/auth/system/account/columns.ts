@@ -1,8 +1,8 @@
-import {useCreateModal} from "@/hooks";
+import {useCreateModal} from "/@/hooks";
 import EditModal from './edit-modal.vue'
-import {delAdminAccount} from "@/api/system/account";
-import {formatDate} from '@/utils/common'
-import {TableColumn} from "@/types/tableColumn";
+import {delAdminAccount} from "/@/api/system/account";
+import {formatDate} from '/@/utils/common'
+import {TableColumn} from "/@/types/tableColumn";
 
 export const columns: TableColumn[] = [ // 进程策略
     {

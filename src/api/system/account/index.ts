@@ -1,5 +1,5 @@
-import http from '@/utils/http/axios';
-import {RequestEnum} from '@/enums/httpEnum'
+import http from '/@/utils/http/axios';
+import {RequestEnum} from '/@/enums/httpEnum'
 
 enum Api {
   adminAccount = '/admin/account',

@@ -1,4 +1,4 @@
-import { Meta } from '@/router/types';
+import { Meta } from '/@/router/types';
 export interface MenuItem {
   icon: string | null;
   id: number;
