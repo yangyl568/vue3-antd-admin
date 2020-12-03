@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "vite-build": "vuedx-typecheck . && vite build",
+    "vite-build": "vite build",
+    "vite-vuedx-build": "vuedx-typecheck . && vite build",
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages -d dist",
     "test prod gzip": "http-server dist --cors --gzip -c-1",

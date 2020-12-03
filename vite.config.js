@@ -1,11 +1,13 @@
 const path = require('path')
 const { loadEnv } = require('vite')
 const CWD = process.cwd()
-//详情可参考https://github.com/vitejs/vite/blob/master/src/node/config.ts
+
+//详细配置可参考https://github.com/vitejs/vite/blob/master/src/node/config.ts
+
 // env
-const BASE_ENV_CONFIG = loadEnv('', CWD)
-const DEV_ENV_CONFIG = loadEnv('development', CWD)
-const PROD_ENV_CONFIG = loadEnv('production', CWD)
+// const BASE_ENV_CONFIG = loadEnv('', CWD)
+// const DEV_ENV_CONFIG = loadEnv('development', CWD)
+// const PROD_ENV_CONFIG = loadEnv('production', CWD)
 
 // console.log('vun:envs:config', {
 //   BASE_ENV_CONFIG,
@@ -18,10 +20,11 @@ module.exports = mode => {
     // console.log('vun:mode:config', mode, TARGET_ENV_CONFIG)
 
     return {
-        port: 8080,
+        port: 8080, // 启动端口
         open: false,
         root: path.resolve(__dirname),
-        assetsDir: 'assets',
+        base: '',
+        assetsDir: 'vue3-antd-admin/assets', // 资源文件夹
         alias: {
             '/@/': path.resolve(__dirname, 'src'),
             // [socket.io-client] lib const syntax issue

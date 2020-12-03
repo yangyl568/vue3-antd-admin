@@ -103,7 +103,7 @@ export default defineComponent({
   padding-top: 240px;
   flex-direction: column;
   align-items: center;
-  background: url("~/@/assets/login.svg");
+  background: url("../../../assets/login.svg");
   background-size: 100%;
 
   .login-logo {
