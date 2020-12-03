@@ -1,7 +1,7 @@
 const path = require('path')
 const { loadEnv } = require('vite')
 const CWD = process.cwd()
-
+//详情可参考https://github.com/vitejs/vite/blob/master/src/node/config.ts
 // env
 const BASE_ENV_CONFIG = loadEnv('', CWD)
 const DEV_ENV_CONFIG = loadEnv('development', CWD)
@@ -47,7 +47,7 @@ module.exports = mode => {
         optimizeDeps: {
             link: [],
             include: [],
-            allowNodeBuiltins: ['querystring'],
+            allowNodeBuiltins: [],
             exclude: []
         },
         terserOptions: {

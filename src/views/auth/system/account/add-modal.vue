@@ -40,6 +40,7 @@ export default defineComponent({
 
     const handleOk = () => {
       state.confirmLoading = true;
+      console.log(dynamicForm.value, 'yous ')
       dynamicForm.value.validate()
           .then( async res => {
             const param = {

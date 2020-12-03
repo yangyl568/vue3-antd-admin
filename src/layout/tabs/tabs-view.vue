@@ -76,14 +76,14 @@
     </a-tabs>
     <div class="tabs-view-content">
       <a-card>
-        <router-transition :not-need-key="true" :animate="false" />
+          <router-transition :not-need-key="true" :animate="false" />
       </a-card>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, nextTick, toRefs, unref, watch} from 'vue'
+import {defineComponent, reactive, toRefs, unref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import components from "/@/layout/tabs/components";
 import {RouterTransition} from '/@/components/transition'
@@ -91,6 +91,7 @@ import {createStorage} from '/@/utils/Storage'
 import {TABS_ROUTES} from '/@/store/mutation-types'
 
 import {message} from 'ant-design-vue'
+import SuspenseWithError from "/@/components/SuspenseWithError.vue";
 
 interface RouteItem {
   fullPath: string;
@@ -105,6 +106,7 @@ interface RouteItem {
 export default defineComponent({
   name: "tabs-view",
   components: {
+    SuspenseWithError,
     ...components, RouterTransition
   },
   setup() {

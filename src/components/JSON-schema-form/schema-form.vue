@@ -1,12 +1,16 @@
 <template>
-  <a-form v-bind="dynamicValidateForm.formItemLayout || formItemLayout">
+  <a-form ref="formRef"
+          :model="modelRef"
+          :rules="rulesRef"
+          v-bind="dynamicValidateForm.formItemLayout || formItemLayout"
+  >
     <template v-for="(formItem, index) in dynamicValidateForm.formItem.filter(item => !item.hidden)"
               :key="formItem.field">
       <a-form-item
           :help="formItem.help"
           :extra="formItem.extra"
-          v-bind="validateInfos[formItem.field]"
           :label="formItem.label"
+          :name="formItem.field"
       >
         <a-spin :spinning="formItem.loading || false">
           <component
@@ -20,15 +24,17 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, getCurrentInstance, isReactive, isRef, markRaw, watch} from 'vue'
+import {defineComponent, reactive, getCurrentInstance, isReactive, isRef, markRaw, watch, ref} from 'vue'
 import {Form, Spin} from 'ant-design-vue'
-import {useForm} from "@ant-design-vue/use";
-import {isString, isFunction} from '/@/utils/is'
+// vite 不支持导入，故暂时放弃使用useForm
+// import {useForm} from "@ant-design-vue/use";
+import {isString, isFunction, isPromise, isAsyncFunction} from '/@/utils/is'
 import components from './components'
 import {FormItem} from "/@/types/schema";
 
 export default defineComponent({
   name: "dynamic-form",
+  mixins: [Form], // 继承原表单的属性
   components: {
     ...components,
     [Spin.name]: Spin,
@@ -48,6 +54,8 @@ export default defineComponent({
   setup(props, ctx) {
     // 表单实例
     const formInstance = getCurrentInstance()
+    // 表单元素
+    const formRef = ref<any>(null)
 
     // 表单布局
     const formItemLayout = {
@@ -77,10 +85,12 @@ export default defineComponent({
         item.loading = true
       }
       // 异步选项
-      if (isFunction(item.asyncOptions)) {
+      if (isFunction(item.asyncOptions) || isAsyncFunction(item.asyncOptions)) {
         item.options = await item.asyncOptions(item, formInstance).finally(() => item.loading = false)
-      } else if (isFunction(item.asyncValue)) { // 异步默认值
+      } else if (isFunction(item.asyncValue) || isAsyncFunction(item.asyncValue)) { // 异步默认值
         modelRef[item.field] = await item.asyncValue(item, formInstance).finally(() => item.loading = false)
+      } else {
+        console.log(item, '什么')
       }
     })
 
@@ -93,16 +103,19 @@ export default defineComponent({
     // console.log(modelRef, '表单')
     // console.log(rulesRef, '表单验证规则')
 
-    const watchCallback = props.dynamicValidateForm.watchCallback ?? (() => ({}))
-
-    // 是否有需要监测的字段
-    props.dynamicValidateForm.watchKeys && watch(props.dynamicValidateForm.watchKeys.map(item => () => modelRef[item]), (curr, prev) => watchCallback(curr, {
-      dynamicForm: props.dynamicValidateForm,
-      modelRef
-    }))
+    // const watchCallback = props.dynamicValidateForm.watchCallback ?? (() => ({}))
+    //
+    // // 是否有需要监测的字段
+    // props.dynamicValidateForm.watchKeys && watch(props.dynamicValidateForm.watchKeys.map(item => () => modelRef[item]), (curr, prev) => watchCallback(curr, {
+    //   dynamicForm: props.dynamicValidateForm,
+    //   modelRef
+    // }))
     // watch(props.dynamicValidateForm.watchKeys.map(item => () => modelRef[item]), eval(props.dynamicValidateForm.watchCallback))
 
-    const {resetFields, validate, validateInfos} = useForm(modelRef, rulesRef);
+    // const {resetFields, validate, validateInfos} = useForm(modelRef, rulesRef);
+
+    // 暂时这样代替useForm的validate验证方法
+    const validate = () => formRef.value.validate()
 
     const preset = ['input', 'textarea', 'select', 'radio', 'checkbox', 'input-number', 'input-range', 'switch']
 
@@ -119,11 +132,13 @@ export default defineComponent({
     }
 
     return {
+      formRef,
       formItemLayout,
       validate,
       isString,
       getComponent,
-      validateInfos,
+      // validateInfos,
+      rulesRef,
       modelRef,
     }
   }

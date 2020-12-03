@@ -27,7 +27,6 @@ import AddModal from './add-modal.vue'
 import {columns} from "./columns";
 import useExpandLoading from '/@/components/dynamic-table/utils/useExpandLoading'
 
-
 export default defineComponent({
   name: 'system-access',
   components: {

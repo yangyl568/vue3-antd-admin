@@ -44,6 +44,7 @@ export const addSchema: FormSchema = {
             asyncOptions: async () => { // 异步数据回调
                 // 获取角色列表
                 const {data} = await getAdminRole({})
+                console.log(data, '数据')
                 return data.map(item => ({
                     label: item.title,
                     value: item.id

@@ -4,8 +4,9 @@ import {RouterTransition} from "/@/components/transition";
 import {Spin} from 'ant-design-vue'
 
 // 异步加载组件
-const asyncComponent = (path) => new Promise((resolve) => resolve(defineAsyncComponent({
+const asyncComponent = (path: string) => new Promise((resolve) => resolve(defineAsyncComponent({
     loader: () => import(path),
+    errorComponent: createVNode('h2',{}, path + ' loading error！'),
     loadingComponent: Spin,
 })))
 

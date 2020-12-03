@@ -1,8 +1,10 @@
 <template>
   <config-provider v-show="!isLock" :locale="zhCN">
-    <router-view v-slot="{ Component }">
-      <component :is="Component"/>
-    </router-view>
+    <div>
+      <router-view v-slot="{ Component }">
+        <component :is="Component"/>
+      </router-view>
+    </div>
   </config-provider>
   <transition name="slide-up">
     <lock-screen v-if="isLock"/>
