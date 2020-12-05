@@ -1,6 +1,6 @@
 <template>
   <a-modal
-      title="编辑字典"
+      :title="fields ? '编辑字典' : '新增字典'"
       v-model:visible="visible"
       :confirm-loading="confirmLoading"
       :afterClose="remove"
@@ -13,13 +13,13 @@
 <script lang="ts">
 import {defineComponent, reactive, toRefs, ref, onMounted} from 'vue'
 import {Modal} from 'ant-design-vue'
-import {addSchema} from "./add-schema"
+import {addSchema} from "./form-schema"
 import {useAsync} from "/@/hooks";
 import {SchemaForm} from '/@/components/JSON-schema-form'
-import {patchAdminDictConfig} from "/@/api/system/dict";
+import {patchAdminDictConfig, postAdminDictConfig} from "/@/api/system/dict";
 
 export default defineComponent({
-  name: "edit-modal",
+  name: "operate-modal",
   components: { [Modal.name]: Modal, SchemaForm},
   props: {
     remove: { // 移除模态框
@@ -45,7 +45,12 @@ export default defineComponent({
       state.confirmLoading = true;
       dynamicForm.value.validate()
           .then( async res => {
-            const result = await useAsync(patchAdminDictConfig(props.fields?.id, dynamicForm.value.modelRef), {ref: state, loadingName: 'confirmLoading'})
+            // 传了id为编辑操作，否则添加
+            if (props.fields?.id) {
+              await patchAdminDictConfig(props.fields?.id, dynamicForm.value.modelRef).finally(() => state.confirmLoading = false)
+            } else {
+              await postAdminDictConfig(dynamicForm.value.modelRef).finally(() => state.confirmLoading = false)
+            }
             state.visible = false;
             props.callback && props.callback()
           })

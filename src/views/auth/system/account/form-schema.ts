@@ -1,7 +1,7 @@
 import {FormSchema} from "/@/types/schema";
 import {getAdminRole, getAdminRoleAccess} from "/@/api/system/role";
 
-export const addSchema: FormSchema = {
+export const formSchema: FormSchema = {
     formItem: [
         {
             type: "input",
@@ -22,7 +22,8 @@ export const addSchema: FormSchema = {
             type: "input",
             label: "密码",
             field: "password",
-            value: "",
+            hidden: false, // 是否隐藏
+            value: undefined,
             props: {
                 type: 'password',
                 placeholder: "请输入密码"
@@ -44,7 +45,6 @@ export const addSchema: FormSchema = {
             asyncOptions: async () => { // 异步数据回调
                 // 获取角色列表
                 const {data} = await getAdminRole({})
-                console.log(data, '数据')
                 return data.map(item => ({
                     label: item.title,
                     value: item.id
