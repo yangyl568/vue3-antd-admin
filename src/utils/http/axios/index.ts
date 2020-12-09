@@ -179,7 +179,12 @@ const transform: AxiosTransform = {
         } catch (error) {
             throw new Error(error);
         }
-        checkStatus(error.response && error.response.status, msg);
+        // 如果不是请求被取消
+        if (error.constructor?.name !== 'Cancel') {
+            checkStatus(error.response && error.response.status, msg);
+        } else {
+            console.warn(error, '请求被取消！')
+        }
         return error;
     },
 };
@@ -206,7 +211,7 @@ const axios = new VAxios({
         // 消息提示类型
         errorMessageMode: 'none',
         // 接口地址
-        apiUrl: process.env.VUE_APP_API_URL,
+        apiUrl: import.meta.env.VITE_API_URL,
     },
     withCredentials: false
 });

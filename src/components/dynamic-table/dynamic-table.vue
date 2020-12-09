@@ -50,18 +50,6 @@
         <div v-if="slotItem.slots.customRender == 'action'" :key="slotItem.slots.customRender" class="actions">
           <!--        对表格的操作动作start-->
           <template v-for="(action, index) in actions">
-            <template v-if="action.type == 'select'">
-              <!--              下拉选择器-->
-              <a-select
-                  v-model:value="slotProps.record[action.key]"
-                  :key="index"
-                  size="small"
-              >
-                <Option v-for="option in action.options" :value="option.value" :key="option.value">
-                  {{ option.label }}
-                </Option>
-              </a-select>
-            </template>
             <!--            按钮-->
             <template v-if="action.type ==  'button'">
               <a-button v-permission="action.permission"
@@ -70,13 +58,9 @@
                 {{ action.text }}
               </a-button>
             </template>
-            <!--            跳转链接-->
-            <template v-if="action.type ==  'link'">
-              <router-link :to="`/`" :key="index" @click="saveChange(slotProps.record)">详情</router-link>
-            </template>
-            <!--            气泡确认框-->
+            <!--            删除按钮 气泡确认框-->
             <template v-if="action.type == 'popconfirm'">
-              <a-popconfirm :key="index" placement="leftTop" @confirm="actionEvent(slotProps.record, action.func)">
+              <a-popconfirm :key="index" placement="leftTop" @confirm="actionEvent(slotProps.record, action.func, 'del')">
                 <template v-slot:title>
                   您确定要删除吗？
                 </template>
@@ -187,7 +171,14 @@ export default defineComponent({
     refreshTableData()
 
     // 操作事件
-    const actionEvent = (record, func) => func({record, props}, refreshTableData)
+    const actionEvent = async (record, func, actionType) => {
+      // 将refreshTableData放入宏任务中
+      const {code} = await func({record, props}, () => setTimeout(() => refreshTableData()))
+      // 如果为删除操作,并且删除成功，当前的表格数据条数小于2条,则当前页数减一,即请求前一页
+      if (actionType == 'del' && code == 0 && state.data.length < 2) {
+        state.pageOption.current = Math.max(1, state.pageOption.current - 1)
+      }
+    }
 
     // 分页改变
     const paginationChange = (pagination, filters, sorter) => {
