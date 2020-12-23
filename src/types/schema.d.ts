@@ -3,7 +3,6 @@ import {VNode, ComponentInternalInstance, HTMLAttributes} from 'vue'
 declare interface Rules {
     required?: boolean;
     message?: string;
-    validator?: (rule, value, callback) => Promise<any>;
     [key: string]: any;
 }
 

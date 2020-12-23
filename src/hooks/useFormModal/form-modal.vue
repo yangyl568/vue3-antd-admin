@@ -48,22 +48,23 @@ export default defineComponent({
     const state = reactive({
       visible: true,
       confirmLoading: false,
-      dynamicValidateForm: cloneDeep(props.formSchema)
+      // dynamicValidateForm: cloneDeep(props.formSchema)
+      dynamicValidateForm: props.formSchema
     })
 
     props.hiddenFields.forEach(field => state.dynamicValidateForm.formItem.find(item => item.field == field)!.hidden = !!props.fields)
 
     const onOk = () => {
       state.confirmLoading = true;
-        dynamicForm.value.validate()
-            .then( async res => {
-             await (props.handleOk && props.handleOk(dynamicForm.value.modelRef, state)).finally(() => state.confirmLoading = false)
-              state.visible = false;
-            })
-            .catch(err => {
-              console.log('error', err);
-              state.confirmLoading = false
-            });
+      dynamicForm.value.validate()
+          .then( async res => {
+            await (props.handleOk && props.handleOk(dynamicForm.value.modelRef, state)).finally(() => state.confirmLoading = false)
+            state.visible = false;
+          })
+          .catch(err => {
+            console.log('error', err);
+            state.confirmLoading = false
+          });
     }
 
     return {

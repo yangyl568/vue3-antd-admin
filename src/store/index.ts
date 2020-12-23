@@ -1,11 +1,9 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 import getters from "/@/store/getters";
-import asyncRouter from "/@/store/modules/async-router";
-import lockscreen from "/@/store/modules/lockscreen";
-import menus from "/@/store/modules/menus";
-import user from "/@/store/modules/user";
+import modules from '/@/store/modules'
+import {App} from "vue";
 
-export default createStore({
+const store = createStore({
     state: {
         testName: 'hello'
     },
@@ -14,10 +12,15 @@ export default createStore({
             state.testName = name
         }
     },
-    actions: {},
-    modules: {
-        'async-router': asyncRouter,
-        lockscreen, menus, user
+    actions: {
     },
+    modules,
     getters
 })
+
+export function setupStore (app: App) {
+    app.use(store)
+    console.log(store, 'vuex')
+}
+
+export default store

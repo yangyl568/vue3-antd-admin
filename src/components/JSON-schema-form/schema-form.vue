@@ -20,6 +20,11 @@
         </a-spin>
       </a-form-item>
     </template>
+    <template v-if="$slots['operate-button']">
+      <a-form-item :wrapper-col="{ span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span,  }">
+        <slot name="operate-button"/>
+      </a-form-item>
+    </template>
   </a-form>
 </template>
 

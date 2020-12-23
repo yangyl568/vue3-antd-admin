@@ -2,12 +2,12 @@ import {delAdminRole, patchAdminRole} from "/@/api/system/role";
 import {formatDate} from '/@/utils/common'
 import {TableColumn} from "/@/types/tableColumn";
 import {useFormModal} from "/@/hooks/useFormModal";
-import {formSchema} from "./form-schema";
+import {getFormSchema} from "./form-schema";
 
 export const columns: TableColumn[] = [ // 角色列表
     {
         title: '角色名称',
-        dataIndex: 'title',
+        dataIndex: 'title'
     },
     {
         title: '描述',
@@ -49,10 +49,7 @@ export const columns: TableColumn[] = [ // 角色列表
                 props: {
                   type: 'danger'
                 },
-                func: async ({record}, callback) => {
-                    await delAdminRole(record.id)
-                    callback()
-                },
+                func: async ({record}, refreshTableData) => await delAdminRole(record.id).then(() => refreshTableData()),
             },
             {
                 type: 'button', // 控制类型，默认为a,可选： select | button | text
@@ -67,7 +64,7 @@ export const columns: TableColumn[] = [ // 角色列表
                 func: ({record}, refreshTableData) => useFormModal({
                     title: '编辑角色',
                     fields: record,
-                    formSchema: formSchema,
+                    formSchema: getFormSchema(),
                     handleOk: async (modelRef, state) => {
                         const {description, title, accessIdsList} = modelRef
 
@@ -75,8 +72,7 @@ export const columns: TableColumn[] = [ // 角色列表
                             description, title,
                             accessIdsList: accessIdsList.toString()
                         }
-                        await patchAdminRole(record.id, params)
-                        refreshTableData()
+                        return await patchAdminRole(record.id, params).then(() => refreshTableData())
                     }
                 })
             }

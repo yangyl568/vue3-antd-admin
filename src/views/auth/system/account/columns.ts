@@ -2,7 +2,7 @@ import {delAdminAccount, patchAdminAccount} from "/@/api/system/account";
 import {formatDate} from '/@/utils/common'
 import {TableColumn} from "/@/types/tableColumn";
 import {useFormModal} from "/@/hooks/useFormModal";
-import {formSchema} from "./form-schema";
+import {getFormSchema} from "./form-schema";
 
 export const columns: TableColumn[] = [ // 账号列表
     {
@@ -54,10 +54,7 @@ export const columns: TableColumn[] = [ // 账号列表
                 props: {
                   type: 'danger'
                 },
-                func: async ({record}, callback) => {
-                    await delAdminAccount(record.id)
-                    callback()
-                },
+                func: async ({record}, refreshTableData) => await delAdminAccount(record.id).then(() => refreshTableData()),
             },
             {
                 type: 'button', // 控制类型，默认为a,可选： select | button | text
@@ -73,7 +70,7 @@ export const columns: TableColumn[] = [ // 账号列表
                     title: '编辑账号',
                     fields: {...record,roles:record?.roles.map(item => item.id)},
                     hiddenFields: ['password'],
-                    formSchema: formSchema,
+                    formSchema: getFormSchema(),
                     handleOk: async (modelRef, state) => {
                         const {username, password, roles} = modelRef
 
@@ -82,8 +79,7 @@ export const columns: TableColumn[] = [ // 账号列表
                             password,
                             roles: roles.toString()
                         }
-                        await patchAdminAccount(record.id, params)
-                        refreshTableData()
+                        return await patchAdminAccount(record.id, params).then(() => refreshTableData())
                     }
                 })
             }
