@@ -1,5 +1,5 @@
-import {RouteRecordRaw} from 'vue-router'
-import {RouterTransition} from '@/components/transition'
+import { RouteRecordRaw } from 'vue-router'
+import { RouterTransition } from '@/components/transition'
 
 /**
  * 不需要授权就可以访问的页面

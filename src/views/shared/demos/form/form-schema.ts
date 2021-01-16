@@ -1,4 +1,4 @@
-import {FormSchema} from "@/types/schema";
+import { FormSchema } from "@/types/schema";
 
 export const getFormSchema = (dynamicForm): FormSchema => ({
     formItemLayout: {
@@ -21,7 +21,7 @@ export const getFormSchema = (dynamicForm): FormSchema => ({
                     message: "密码不能为空",
                     validator: async (rule, value) => {
                         // 获取二次确认密码
-                        const {confirmPassword,password} = dynamicForm.value.modelRef
+                        const { confirmPassword, password } = dynamicForm.value.modelRef
                         if (password === '') {
                             return Promise.reject('请输入密码');
                         } else {
@@ -48,7 +48,7 @@ export const getFormSchema = (dynamicForm): FormSchema => ({
                     required: true,
                     validator: async (rule, value, callback, source, options) => {
                         // 获取第一个密码
-                        const {confirmPassword, password} = dynamicForm.value.modelRef
+                        const { confirmPassword, password } = dynamicForm.value.modelRef
                         console.log(confirmPassword, password)
                         if (confirmPassword === '') {
                             return Promise.reject('请重新输入密码');

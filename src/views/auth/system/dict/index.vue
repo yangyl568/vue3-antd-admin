@@ -1,6 +1,5 @@
 <template>
-  <dynamic-table ref="tableRef" :columns="columns" :get-list-func="getAdminDictConfig" rowKey="id"
-                 :row-selection="rowSelection">
+  <dynamic-table ref="tableRef" :columns="columns" :get-list-func="getAdminDictConfig" rowKey="id" :row-selection="rowSelection">
     <template v-slot:title>
       <a-button @click="addItem" type="primary">
         新增字典
@@ -12,15 +11,27 @@
   </dynamic-table>
 </template>
 <script lang="ts">
-import {defineComponent, reactive, toRefs, createVNode, computed, ref} from 'vue'
-import {Modal} from 'ant-design-vue'
-import {QuestionCircleOutlined} from '@ant-design/icons-vue'
-import {DynamicTable} from '@/components/dynamic-table'
-import {delAdminDictConfig, getAdminDictConfig, patchAdminDictConfig, postAdminDictConfig} from '@/api/system/dict'
-import {getFormSchema} from "./form-schema"
-import {columns} from "./columns";
-import {hasPermission} from "@/utils/permission/hasPermission";
-import {useFormModal} from "@/hooks/useFormModal/";
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  createVNode,
+  computed,
+  ref
+} from 'vue'
+import { Modal } from 'ant-design-vue'
+import { QuestionCircleOutlined } from '@ant-design/icons-vue'
+import { DynamicTable } from '@/components/dynamic-table'
+import {
+  delAdminDictConfig,
+  getAdminDictConfig,
+  patchAdminDictConfig,
+  postAdminDictConfig
+} from '@/api/system/dict'
+import { getFormSchema } from './form-schema'
+import { columns } from './columns'
+import { hasPermission } from '@/utils/permission/hasPermission'
+import { useFormModal } from '@/hooks/useFormModal/'
 
 export default defineComponent({
   name: 'system-dict',
@@ -34,10 +45,10 @@ export default defineComponent({
       tableLoading: false,
       rowSelection: {
         onChange: (selectedRowKeys, selectedRows) => {
-          state.rowSelection.selectedRowKeys = selectedRowKeys;
+          state.rowSelection.selectedRowKeys = selectedRowKeys
         },
         selectedRowKeys: []
-      },
+      }
     })
 
     // 删除多项
@@ -47,7 +58,9 @@ export default defineComponent({
         icon: createVNode(QuestionCircleOutlined),
         content: '您确定要删除所有选中吗？',
         onOk: async () => {
-          await delAdminDictConfig(state.rowSelection.selectedRowKeys.toString())
+          await delAdminDictConfig(
+            state.rowSelection.selectedRowKeys.toString()
+          )
           tableRef.value.refreshTableData()
           state.rowSelection.selectedRowKeys = []
         }
@@ -64,7 +77,9 @@ export default defineComponent({
         }
       })
     }
-    const isDisabled = computed(() => state.rowSelection.selectedRowKeys.length == 0)
+    const isDisabled = computed(
+      () => state.rowSelection.selectedRowKeys.length == 0
+    )
 
     return {
       ...toRefs(state),
@@ -73,7 +88,7 @@ export default defineComponent({
       getAdminDictConfig,
       isDisabled,
       addItem,
-      deleteItems,
+      deleteItems
     }
   }
 })

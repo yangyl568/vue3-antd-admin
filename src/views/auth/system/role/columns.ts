@@ -1,8 +1,8 @@
-import {delAdminRole, patchAdminRole} from "@/api/system/role";
-import {formatDate} from '@/utils/common'
-import {TableColumn} from "@/types/tableColumn";
-import {useFormModal} from "@/hooks/useFormModal";
-import {getFormSchema} from "./form-schema";
+import { delAdminRole, patchAdminRole } from "@/api/system/role";
+import { formatDate } from '@/utils/common'
+import { TableColumn } from "@/types/tableColumn";
+import { useFormModal } from "@/hooks/useFormModal";
+import { getFormSchema } from "./form-schema";
 
 export const columns: TableColumn[] = [ // 角色列表
     {
@@ -47,9 +47,9 @@ export const columns: TableColumn[] = [ // 角色列表
                     effect: 'disabled'
                 },
                 props: {
-                  type: 'danger'
+                    type: 'danger'
                 },
-                func: async ({record}, refreshTableData) => await delAdminRole(record.id).then(() => refreshTableData()),
+                func: async ({ record }, refreshTableData) => await delAdminRole(record.id).then(() => refreshTableData()),
             },
             {
                 type: 'button', // 控制类型，默认为a,可选： select | button | text
@@ -61,12 +61,12 @@ export const columns: TableColumn[] = [ // 角色列表
                 props: {
                     type: 'warning'
                 },
-                func: ({record}, refreshTableData) => useFormModal({
+                func: ({ record }, refreshTableData) => useFormModal({
                     title: '编辑角色',
                     fields: record,
                     formSchema: getFormSchema(),
                     handleOk: async (modelRef, state) => {
-                        const {description, title, accessIdsList} = modelRef
+                        const { description, title, accessIdsList } = modelRef
 
                         const params = {
                             description, title,

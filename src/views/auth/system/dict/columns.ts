@@ -1,8 +1,8 @@
-import {formatDate} from '@/utils/common'
-import {TableColumn} from "@/types/tableColumn";
-import {useFormModal} from "@/hooks/useFormModal";
-import {getFormSchema} from "@/views/auth/system/dict/form-schema";
-import {delAdminDictConfig, patchAdminDictConfig} from "@/api/system/dict";
+import { formatDate } from '@/utils/common'
+import { TableColumn } from "@/types/tableColumn";
+import { useFormModal } from "@/hooks/useFormModal";
+import { getFormSchema } from "@/views/auth/system/dict/form-schema";
+import { delAdminDictConfig, patchAdminDictConfig } from "@/api/system/dict";
 
 export const columns: TableColumn[] = [ // 字典表格
     {
@@ -55,9 +55,9 @@ export const columns: TableColumn[] = [ // 字典表格
                     effect: 'disabled'
                 },
                 props: {
-                  type: 'danger'
+                    type: 'danger'
                 },
-                func: async ({record}, refreshTableData) => await delAdminDictConfig(record.id).then(() => refreshTableData()),
+                func: async ({ record }, refreshTableData) => await delAdminDictConfig(record.id).then(() => refreshTableData()),
             },
             {
                 type: 'button', // 控制类型，默认为a,可选： select | button | text
@@ -69,7 +69,7 @@ export const columns: TableColumn[] = [ // 字典表格
                 props: {
                     type: 'warning'
                 },
-                func: ({record}, refreshTableData) => useFormModal({
+                func: ({ record }, refreshTableData) => useFormModal({
                     title: '编辑字典',
                     fields: record,
                     formSchema: getFormSchema(),

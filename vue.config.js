@@ -21,7 +21,7 @@ module.exports = {
             less: {
                 javascriptEnabled: true
             },
-            sass: {additionalData: `@import "@/styles/global.scss";`}
+            sass: { additionalData: `@import "@/styles/global.scss";` }
         }
     },
     chainWebpack: config => {

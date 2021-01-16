@@ -109,7 +109,7 @@ const transform: AxiosTransform = {
         const {apiUrl, joinPrefix, joinParamsToUrl, formatDate, isParseToJson} = options;
 
         config.url = isDev ? `/api${config.url}` : `${apiUrl || ''}${config.url}`;
-
+        
         if (config.method === RequestEnum.GET) {
             const now = new Date().getTime();
             if (!isString(config.params)) {
